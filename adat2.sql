@@ -22,4 +22,31 @@ union
 minus
 select from owner from dba_objects where object_type='INDEX'));
 
+--Kilistázz az oszlop neveket
+desc sila.emp
 
+--
+select * from user_tab_columns;
+
+--Hány oszlopa van a nikovits.emp táblának?
+select count(*) from dba_tab_columns where owner = 'NIKOVITS' and table_name = 'EMP'
+--vagy
+select max(column_id) from dba_tab_columns where owner = 'NIKOVITS' and table_name = 'EMP'
+
+--
+select * emp where rownum=1;
+
+select * emp where rownum<=2;
+
+--Milyen típusú a nikovits.emp tábla 6. oszlopa?
+select data_type from dba_tab_columns where owner = 'NIKOVITS' and table_name = 'EMP' and column_id = 6;
+
+--Adjuk meg azoknak a tábláknak a tulajdonosát és nevét, amelyeknek van 'Z' betűvel 
+--kezdődő oszlopa.
+select distinct owner, table_name from dba_tab_columns where column_name like 'Z%';
+
+--Adjuk meg azoknak a tábláknak a nevét, amelyeknek legalább 8 darab dátum tipusú oszlopa van.
+select owner, table_name, count(*) from dba_tab_columns
+where data_type = 'DATE' group by owner, table_name having count(*) > 8;
+
+--
