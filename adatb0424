@@ -1,0 +1,6 @@
+SELECT * from emp; --EXPLAIN PLAN FUTATTÁSA 
+
+explain plan for
+SELECT * FROM emp
+
+SELECT PLAN_TABLE_OUTPUT FROM TABLE(dbms_xplan.display('PLAN_TABLE', NULL, 'ALL'));
